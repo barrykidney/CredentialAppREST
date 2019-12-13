@@ -4,7 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.net.URL;
+import java.util.List;
 
 
 @Entity // This tells Hibernate to make a table out of this class
@@ -13,24 +15,30 @@ public class ServiceCredentials {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
-    private URL serviceUrl;
+//    private URL serviceUrl;
+    private String serviceUrl;
 
+    @NotNull
     private String serviceName;
 
     private String username;
 
     private String email;
 
+    @NotNull
     private String encodedPassword;
 
-//    private List<String> encodedPreviousPasswordList;
+//    private List<String> encodedPreviousPassword;
 
+    @NotNull
     private long dateLastModified;
 
-//    private List<String> identifierList;
+//    private List<String> Identifiers;
+    private String firstIdentifier;
 
     private String note;
 
+    @NotNull
     private boolean active;
 
 
@@ -42,11 +50,11 @@ public class ServiceCredentials {
         this.id = id;
     }
 
-    public URL getServiceUrl() {
+    public String getServiceUrl() {
         return serviceUrl;
     }
 
-    public void setServiceUrl(URL serviceUrl) {
+    public void setServiceUrl(String serviceUrl) {
         this.serviceUrl = serviceUrl;
     }
 
@@ -82,29 +90,37 @@ public class ServiceCredentials {
         this.encodedPassword = encodedPassword;
     }
 
-//	public List<String> getEncodedPreviousPasswordList() {
-//		return encodedPreviousPasswordList;
+//	public String getEncodedPreviousPassword() {
+//		return this.encodedPreviousPassword;
 //	}
 //
-//	public void setEncodedPreviousPasswordList(List<String> encodedPreviousPasswordList) {
-//		this.encodedPreviousPasswordList = encodedPreviousPasswordList;
+//	public void setEncodedPreviousPassword(String encodedPreviousPassword) {
+//		this.encodedPreviousPassword = encodedPreviousPassword;
 //	}
 
     public long getDateLastModified() {
         return dateLastModified;
     }
 
-    public void setDateLastModified(long dateLastModified) {
+    void setDateLastModified(long dateLastModified) {
         this.dateLastModified = dateLastModified;
     }
 
-//	public List<String> getIdentifierList() {
-//		return identifierList;
-//	}
+	public String getFirstIdentifier() {
+		return this.firstIdentifier;
+	}
+
+	public void setFirstIdentifier(String firstIdentifier) {
+		this.firstIdentifier = firstIdentifier;
+	}
+
+//    public String getSecondIdentifier() {
+//        return this.secondIdentifier;
+//    }
 //
-//	public void setIdentifierList(List<String> identifierList) {
-//		this.identifierList = identifierList;
-//	}
+//    public void setSecondIdentifier(String secondIdentifier) {
+//        this.secondIdentifier = secondIdentifier;
+//    }
 
     public String getNote() {
         return note;
