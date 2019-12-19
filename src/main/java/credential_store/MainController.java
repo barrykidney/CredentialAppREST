@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.time.Instant;
+import java.util.Optional;
 
 import credential_store.ServiceCredentials;
 import credential_store.ServiceCredentialsRepository;
@@ -36,7 +37,15 @@ public class MainController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteServiceCredentials(@PathVariable Integer id) {
-        serviceCredentialsRepository.deleteById(id);
+    public @ResponseBody ServiceCredentials deleteServiceCredentials(@PathVariable Integer id) {
+        ServiceCredentials retCredential;
+        Optional<ServiceCredentials> optCredential = serviceCredentialsRepository.findById(id);
+        if (optCredential.isPresent()) {
+            retCredential = optCredential.get();
+            serviceCredentialsRepository.deleteById(retCredential.getId());
+        } else {
+            retCredential = new ServiceCredentials();
+        }
+        return retCredential;
     }
 }
