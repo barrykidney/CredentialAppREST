@@ -1,5 +1,6 @@
 credential_store/MainController.class
 credential_store/Application.class
+credential_store/CredentialSummary.class
 credential_store/CredentialsNotFoundException.class
 credential_store/ServiceCredentials.class
 credential_store/ServiceCredentialsRepository.class
