@@ -5,17 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import java.net.URL;
 import java.util.List;
 
 
 @Entity // This tells Hibernate to make a table out of this class
-public class ServiceCredentials {
+public class Credential {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
-//    private URL serviceUrl;
     private String serviceUrl;
 
     @NotNull
@@ -26,15 +24,14 @@ public class ServiceCredentials {
     private String email;
 
     @NotNull
-    private String encodedPassword;
+    private String encryptedPassword;
 
-//    private List<String> encodedPreviousPassword;
+    private String encryptedPreviousPassword;
 
     @NotNull
     private long dateLastModified;
 
-//    private List<String> Identifiers;
-    private String firstIdentifier;
+    private String identifiers;
 
     private String note;
 
@@ -82,21 +79,21 @@ public class ServiceCredentials {
         this.email = email;
     }
 
-    public String getEncodedPassword() {
-        return encodedPassword;
+    public String getEncryptedPassword() {
+        return encryptedPassword;
     }
 
-    public void setEncodedPassword(String encodedPassword) {
-        this.encodedPassword = encodedPassword;
+    public void setEncryptedPassword(String encryptedPassword) {
+        this.encryptedPassword = encryptedPassword;
     }
 
-//	public String getEncodedPreviousPassword() {
-//		return this.encodedPreviousPassword;
-//	}
-//
-//	public void setEncodedPreviousPassword(String encodedPreviousPassword) {
-//		this.encodedPreviousPassword = encodedPreviousPassword;
-//	}
+	public String getEncryptedPreviousPassword() {
+		return this.encryptedPreviousPassword;
+	}
+
+	public void setEncryptedPreviousPassword(String encryptedPreviousPassword) {
+		this.encryptedPreviousPassword = encryptedPreviousPassword;
+	}
 
     public long getDateLastModified() {
         return dateLastModified;
@@ -106,21 +103,13 @@ public class ServiceCredentials {
         this.dateLastModified = dateLastModified;
     }
 
-	public String getFirstIdentifier() {
-		return this.firstIdentifier;
-	}
+    public String getIdentifiers() {
+        return this.identifiers;
+    }
 
-	public void setFirstIdentifier(String firstIdentifier) {
-		this.firstIdentifier = firstIdentifier;
-	}
-
-//    public String getSecondIdentifier() {
-//        return this.secondIdentifier;
-//    }
-//
-//    public void setSecondIdentifier(String secondIdentifier) {
-//        this.secondIdentifier = secondIdentifier;
-//    }
+    public void setIdentifiers(String identifiers) {
+        this.identifiers = identifiers;
+    }
 
     public String getNote() {
         return note;

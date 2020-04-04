@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 
 @Entity
-public class CredentialDTO {
+public class CredentialSummaryDTO {
 
     @Id
     private Integer id;
@@ -15,18 +15,14 @@ public class CredentialDTO {
     private String serviceName;
 
     @NotNull
-    private String encryptedPassword;
-
-    @NotNull
     private long dateLastModified;
 
     @NotNull
     private boolean active;
 
-    CredentialDTO(Integer id, String serviceName, String encryptedPassword, long dateLastModified, boolean active) {
+    CredentialSummaryDTO(Integer id, String serviceName, long dateLastModified, boolean active) {
         this.id = id;
         this.serviceName = serviceName;
-        this.encryptedPassword = encryptedPassword;
         this.dateLastModified = dateLastModified;
         this.active = active;
     }
@@ -45,14 +41,6 @@ public class CredentialDTO {
 
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
-    }
-
-    public String getEncryptedPassword() {
-        return this.encryptedPassword;
-    }
-
-    public void setEncryptedPassword(String encryptedPassword) {
-        this.encryptedPassword = encryptedPassword;
     }
 
     public long getDateLastModified() {
