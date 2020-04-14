@@ -1,17 +1,14 @@
 package credential_store;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Credential {
+
+    //@GeneratedValue(strategy=GenerationType.AUTO)
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
     private String serviceUrl;
@@ -26,11 +23,12 @@ public class Credential {
     @NotNull
     private String encryptedPassword;
 
-    private String encryptedPreviousPassword;
+    private String encryptedPreviousPasswords;
 
     @NotNull
     private long dateLastModified;
 
+    @NotNull
     private String identifiers;
 
     private String note;
@@ -87,12 +85,12 @@ public class Credential {
         this.encryptedPassword = encryptedPassword;
     }
 
-	public String getEncryptedPreviousPassword() {
-		return this.encryptedPreviousPassword;
+	public String getEncryptedPreviousPasswords() {
+		return this.encryptedPreviousPasswords;
 	}
 
-	public void setEncryptedPreviousPassword(String encryptedPreviousPassword) {
-		this.encryptedPreviousPassword = encryptedPreviousPassword;
+	public void setEncryptedPreviousPasswords(String encryptedPreviousPasswords) {
+		this.encryptedPreviousPasswords = encryptedPreviousPasswords;
 	}
 
     public long getDateLastModified() {
