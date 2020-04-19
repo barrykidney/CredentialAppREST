@@ -3,7 +3,6 @@ package credential_store;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 
 
 @Entity
@@ -27,14 +26,13 @@ public class CredentialDTO {
     @NotNull
     private long dateLastModified;
 
-    @NotNull
-    private ArrayList<String> identifiers;
+    private String note;
 
     @NotNull
     private boolean active;
 
     CredentialDTO(Integer id, String serviceUrl, String serviceName, String username, String email,
-                  String encryptedPassword, long dateLastModified, ArrayList<String> identifiers, boolean active) {
+                  String encryptedPassword, long dateLastModified, String note, boolean active) {
         this.id = id;
         this.serviceUrl = serviceUrl;
         this.serviceName = serviceName;
@@ -42,82 +40,78 @@ public class CredentialDTO {
         this.email = email;
         this.encryptedPassword = encryptedPassword;
         this.dateLastModified = dateLastModified;
+        this.note = note;
         this.active = active;
-        if (identifiers != null) {
-            this.identifiers = identifiers;
-        } else {
-            this.identifiers = new ArrayList<>();
-        }
     }
 
+    //Getters
     public Integer getId() {
         return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getServiceUrl() {
-        return this.serviceUrl;
-    }
-
-    public void setServiceUrl(String serviceUrl) {
-        this.serviceUrl = serviceUrl;
     }
 
     public String getServiceName() {
         return this.serviceName;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
+    public String getServiceUrl() {
+        return this.serviceUrl;
     }
-
 
     public String getUsername() {
         return this.username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getEmail() {
         return this.email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
     public String getEncryptedPassword() {
         return this.encryptedPassword;
-    }
-
-    public void setEncryptedPassword(String encryptedPassword) {
-        this.encryptedPassword = encryptedPassword;
     }
 
     public long getDateLastModified() {
         return this.dateLastModified;
     }
 
-    void setDateLastModified(long dateLastModified) {
-        this.dateLastModified = dateLastModified;
-    }
-
-    public ArrayList<String> getIdentifiers() {
-        return this.identifiers;
-    }
-
-    void setIdentifiers(ArrayList<String> identifiers) {
-        this.identifiers = identifiers;
+    public String getNote() {
+        return this.note;
     }
 
     public boolean getActive() {
         return this.active;
+    }
+
+    // Setters
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setServiceUrl(String serviceUrl) {
+        this.serviceUrl = serviceUrl;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setEncryptedPassword(String encryptedPassword) {
+        this.encryptedPassword = encryptedPassword;
+    }
+
+    void setDateLastModified(long dateLastModified) {
+        this.dateLastModified = dateLastModified;
+    }
+
+    void setIdentifiers(String note) {
+        this.note = note;
     }
 
     public void setActive(boolean active) {
@@ -134,7 +128,7 @@ public class CredentialDTO {
                 .append("email: ").append(this.email).append(", ")
                 .append("encryptedPassword: ").append(this.encryptedPassword).append(", ")
                 .append("dateLastModified: ").append(this.dateLastModified).append(", ")
-                .append("identifiers: ").append(this.identifiers.toString()).append(", ")
+                .append("note: ").append(this.note).append(", ")
                 .append("active: ").append(this.active);
 
         return sb.toString();

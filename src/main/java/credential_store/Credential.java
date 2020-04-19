@@ -28,97 +28,87 @@ public class Credential {
     @NotNull
     private long dateLastModified;
 
-    @NotNull
-    private String identifiers;
-
     private String note;
 
     @NotNull
     private boolean active;
 
-
+    // Getters
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getServiceUrl() {
-        return serviceUrl;
-    }
-
-    public void setServiceUrl(String serviceUrl) {
-        this.serviceUrl = serviceUrl;
     }
 
     public String getServiceName() {
         return serviceName;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
+    public String getServiceUrl() {
+        return serviceUrl;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getEncryptedPassword() {
         return encryptedPassword;
     }
 
-    public void setEncryptedPassword(String encryptedPassword) {
-        this.encryptedPassword = encryptedPassword;
+    public String getEncryptedPreviousPasswords() {
+        return this.encryptedPreviousPasswords;
     }
-
-	public String getEncryptedPreviousPasswords() {
-		return this.encryptedPreviousPasswords;
-	}
-
-	public void setEncryptedPreviousPasswords(String encryptedPreviousPasswords) {
-		this.encryptedPreviousPasswords = encryptedPreviousPasswords;
-	}
 
     public long getDateLastModified() {
         return dateLastModified;
-    }
-
-    void setDateLastModified(long dateLastModified) {
-        this.dateLastModified = dateLastModified;
-    }
-
-    public String getIdentifiers() {
-        return this.identifiers;
-    }
-
-    public void setIdentifiers(String identifiers) {
-        this.identifiers = identifiers;
     }
 
     public String getNote() {
         return note;
     }
 
-    public void setNote(String note) {
-        this.note = note;
-    }
-
     public boolean getActive() {
         return active;
+    }
+
+    // Setters
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public void setServiceUrl(String serviceUrl) {
+        this.serviceUrl = serviceUrl;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setEncryptedPassword(String encryptedPassword) {
+        this.encryptedPassword = encryptedPassword;
+    }
+
+	public void setEncryptedPreviousPasswords(String encryptedPreviousPasswords) {
+		this.encryptedPreviousPasswords = encryptedPreviousPasswords;
+	}
+
+    void setDateLastModified(long dateLastModified) {
+        this.dateLastModified = dateLastModified;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public void setActive(boolean active) {

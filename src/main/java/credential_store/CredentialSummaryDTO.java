@@ -19,18 +19,16 @@ public class CredentialSummaryDTO {
     @NotNull
     private long dateLastModified;
 
-    @NotNull
-    private ArrayList<String> identifiers;
+    private String note;
 
     @NotNull
     private boolean active;
 
-    CredentialSummaryDTO(Integer id, String serviceName, long dateLastModified,
-                         ArrayList<String> identifiers, boolean active) {
+    CredentialSummaryDTO(Integer id, String serviceName, long dateLastModified, String note, boolean active) {
         this.id = id;
         this.serviceName = serviceName;
         this.dateLastModified = dateLastModified;
-        this.identifiers = identifiers;
+        this.note =note;
         this.active = active;
     }
 
@@ -38,36 +36,36 @@ public class CredentialSummaryDTO {
         return this.id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getServiceName() {
         return this.serviceName;
-    }
-
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
     }
 
     public long getDateLastModified() {
         return this.dateLastModified;
     }
 
-    void setDateLastModified(long dateLastModified) {
-        this.dateLastModified = dateLastModified;
-    }
-
-    public List<String> getIdentifiers() {
-        return this.identifiers;
-    }
-
-    void setIdentifiers(ArrayList<String> identifiers) {
-        this.identifiers = identifiers;
+    public String getNote() {
+        return this.note;
     }
 
     public boolean getActive() {
         return this.active;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    void setDateLastModified(long dateLastModified) {
+        this.dateLastModified = dateLastModified;
+    }
+
+    void setNote(String note) {
+        this.note = note;
     }
 
     public void setActive(boolean active) {
