@@ -29,10 +29,13 @@ public class CredentialDTO {
     private String note;
 
     @NotNull
+    private Integer userId;
+
+    @NotNull
     private boolean active;
 
     CredentialDTO(Integer id, String serviceUrl, String serviceName, String username, String email,
-                  String encryptedPassword, long dateLastModified, String note, boolean active) {
+                  String encryptedPassword, long dateLastModified, String note, Integer userId, boolean active) {
         this.id = id;
         this.serviceUrl = serviceUrl;
         this.serviceName = serviceName;
@@ -41,6 +44,7 @@ public class CredentialDTO {
         this.encryptedPassword = encryptedPassword;
         this.dateLastModified = dateLastModified;
         this.note = note;
+        this.userId = userId;
         this.active = active;
     }
 
@@ -77,6 +81,10 @@ public class CredentialDTO {
         return this.note;
     }
 
+    public Integer getUserId() {
+        return this.userId;
+    }
+
     public boolean getActive() {
         return this.active;
     }
@@ -110,8 +118,12 @@ public class CredentialDTO {
         this.dateLastModified = dateLastModified;
     }
 
-    void setIdentifiers(String note) {
+    void setNote(String note) {
         this.note = note;
+    }
+
+    void setUser(Integer userId) {
+        this.userId = userId;
     }
 
     public void setActive(boolean active) {
@@ -129,6 +141,7 @@ public class CredentialDTO {
                 .append("encryptedPassword: ").append(this.encryptedPassword).append(", ")
                 .append("dateLastModified: ").append(this.dateLastModified).append(", ")
                 .append("note: ").append(this.note).append(", ")
+                .append("userId: ").append(this.userId).append(", ")
                 .append("active: ").append(this.active);
 
         return sb.toString();

@@ -17,8 +17,8 @@ public class UserController {
     }
 
     @GetMapping(path="/{userId}")
-    public @ResponseBody User getUserById(@PathVariable Integer credentialId) {
-        return userService.getUserById(credentialId);
+    public @ResponseBody User getUserById(@PathVariable Integer userId) {
+        return userService.getUserById(userId);
     }
 
     @PostMapping(path="/")

@@ -13,7 +13,7 @@ public class CredentialConverter {
         // return modelMapper.map(credential, CredentialDTO.class);
         return new CredentialDTO(credential.getId(), credential.getServiceUrl(), credential.getServiceName(),
                 credential.getUsername(), credential.getEmail(), credential.getEncryptedPassword(),
-                credential.getDateLastModified(), credential.getNote(), credential.getActive());
+                credential.getDateLastModified(), credential.getNote(), credential.getUserId(), credential.getActive());
     }
 
     protected Credential convertToEntity(CredentialDTO credentialDto) {
@@ -27,6 +27,7 @@ public class CredentialConverter {
         credential.setEncryptedPassword(credentialDto.getEncryptedPassword());
         credential.setDateLastModified(credentialDto.getDateLastModified());
         credential.setNote(credentialDto.getNote());
+        credential.setUser(credentialDto.getUserId());
         credential.setActive(credentialDto.getActive());
 
         return credential;

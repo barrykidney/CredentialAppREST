@@ -14,7 +14,6 @@ public class CredentialService {
 
     private final CredentialConverter credentialConverter = new CredentialConverter();
 
-
     public Iterable<CredentialSummaryDTO> getAllCredentials() {
         List<CredentialSummaryDTO> allCredentialSummaries = new ArrayList<>();
         Iterable<Credential> allCredentials = credentialRepository.findAll();
@@ -32,7 +31,18 @@ public class CredentialService {
 
         return new CredentialDTO(credential.getId(), credential.getServiceUrl(), credential.getServiceName(),
                 credential.getUsername(), credential.getEmail(), credential.getEncryptedPassword(),
-                credential.getDateLastModified(), credential.getNote(), credential.getActive());
+                credential.getDateLastModified(), credential.getNote(), credential.getUserId(), credential.getActive());
+    }
+
+    public Iterable<CredentialSummaryDTO> getCredentialsByUserId(Integer userId) {
+        List<CredentialSummaryDTO> allUserCredentialSummaries = new ArrayList<>();
+        Iterable<Credential> allUserCredentials = credentialRepository.findByUserId(userId);
+
+        for (Credential credential : allUserCredentials) {
+            allUserCredentialSummaries.add(new CredentialSummaryDTO(credential.getId(), credential.getServiceName(),
+                    credential.getDateLastModified(), credential.getNote(), credential.getActive()));
+        }
+        return allUserCredentialSummaries;
     }
 
     public CredentialDTO addNewCredential(CredentialDTO newCredentialDto) {

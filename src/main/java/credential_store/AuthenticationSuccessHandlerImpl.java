@@ -21,13 +21,10 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
                                         Authentication authentication) throws IOException, ServletException {
-        System.out.println("9999999999999999999999999999999999999999999999999999999999999999999999999999");
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         if (authorities.contains(ADMIN_AUTHORITY)) {
-            System.out.println("9999999999999999999999999999999999999999999999999999999999999999999999999999");
             redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/admin");
         } else {
-            System.out.println("7777777777777777777777777777777777777777777777777777777777777777777777777777");
             redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/credentials");
         }
     }

@@ -22,6 +22,11 @@ public class MainController {
         return credentialService.getCredentialById(credentialId);
     }
 
+    @GetMapping(path="/user/{userId}")
+    public @ResponseBody Iterable<CredentialSummaryDTO> getCredentialsByUserId(@PathVariable Integer userId) {
+        return credentialService.getCredentialsByUserId(userId);
+    }
+
     @PostMapping(path="/")
     public @ResponseBody CredentialDTO addNewCredentials(@RequestBody CredentialDTO newCredentialDto) {
         // This returns a JSON or XML with the ServiceCredentials

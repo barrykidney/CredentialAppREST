@@ -31,6 +31,9 @@ public class Credential {
     private String note;
 
     @NotNull
+    private Integer userId;
+
+    @NotNull
     private boolean active;
 
     // Getters
@@ -64,6 +67,10 @@ public class Credential {
 
     public long getDateLastModified() {
         return dateLastModified;
+    }
+
+    public Integer getUserId() {
+        return userId;
     }
 
     public String getNote() {
@@ -109,6 +116,10 @@ public class Credential {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public void setUser(Integer userId) {
+        this.userId = userId;
     }
 
     public void setActive(boolean active) {
