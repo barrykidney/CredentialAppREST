@@ -12,6 +12,9 @@ public class CredentialService {
     @Autowired // This means to get the bean called ServiceCredentialsRepository
     private CredentialRepository credentialRepository;
 
+    @Autowired
+    private UserService userService;
+
     private final CredentialConverter credentialConverter = new CredentialConverter();
 
     public Iterable<CredentialSummaryDTO> getAllCredentials() {
@@ -47,9 +50,9 @@ public class CredentialService {
 
     public CredentialDTO addNewCredential(CredentialDTO newCredentialDto) {
         newCredentialDto.setDateLastModified(Instant.now().toEpochMilli());
+        userService.getUserById(newCredentialDto.getUserId());
         Credential newCredentialEntity = credentialConverter.convertToEntity(newCredentialDto);
         Credential savedCredentialEntity = credentialRepository.save(newCredentialEntity);
-
         return credentialConverter.convertToDto(savedCredentialEntity);
     }
 
