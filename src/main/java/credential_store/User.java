@@ -19,6 +19,9 @@ public class User {
     private String password;
 
     @NotNull
+    private long dateLastModified;
+
+    @NotNull
     private String role;
 
     // Getters
@@ -38,6 +41,10 @@ public class User {
         return password;
     }
 
+    public long getDateLastModified() {
+        return dateLastModified;
+    }
+
     public String getRole() {
         return this.role;
     }
@@ -53,6 +60,10 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setDateLastModified(long dateLastModified) {
+        this.dateLastModified = dateLastModified;
     }
 
     public void setRole(String role) {
