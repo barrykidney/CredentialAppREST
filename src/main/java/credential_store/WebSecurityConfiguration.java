@@ -7,16 +7,12 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-//    @Autowired
-//    private AuthenticationSuccessHandler authenticationSuccessHandler;
+    @Autowired
+    private CustomAuthenticationProvider authProvider;
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -33,24 +29,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user")
-                .password("{noop}password")
-                .roles("USER")
-                .and()
-                .withUser("admin")
-                .password("{noop}password")
-                .roles("ADMIN");
-    }
+        auth.authenticationProvider(authProvider);
 
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//
-//        User.UserBuilder users = User.withDefaultPasswordEncoder();
-//        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-//        manager.createUser(users.username("user").password("password").roles("USER").build());
-//        manager.createUser(users.username("admin").password("password").roles("USER", "ADMIN").build());
-//        return manager;
-//
-//    }
+//        auth.inMemoryAuthentication()
+//                .withUser("user")
+//                .password("{noop}password")
+//                .roles("USER")
+//                .and()
+//                .withUser("admin")
+//                .password("{noop}password")
+//                .roles("ADMIN");
+    }
 }
