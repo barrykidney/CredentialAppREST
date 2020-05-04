@@ -16,9 +16,14 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping(path="/{userId}")
+    @GetMapping(path="/id/{userId}")
     public @ResponseBody User getUserById(@PathVariable Integer userId) {
         return userService.getUserById(userId);
+    }
+
+    @GetMapping(path="/username/{username}")
+    public @ResponseBody User getUserByUsername(@PathVariable String username) {
+        return userService.findUserByUsername(username);
     }
 
     @PostMapping(path="/")
