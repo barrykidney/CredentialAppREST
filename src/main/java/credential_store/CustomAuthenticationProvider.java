@@ -8,6 +8,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
+import credential_store.exceptions.UserNotAuthenticatedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +25,15 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        User user = userService.findUserByUsername(username);
+        User user = userService.getUserByUsername(username);
+        if (password.equals(user.getPassword())) {
+            List<GrantedAuthority> authorities = new ArrayList<>();
+            authorities.add(new SimpleGrantedAuthority(user.getRole())); // description is a string
 
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(user.getRole())); // description is a string
-
-        return new UsernamePasswordAuthenticationToken(username, password, authorities);
+            return new UsernamePasswordAuthenticationToken(username, password, authorities);
+        } else {
+            throw new UserNotAuthenticatedException("User not authenticated");
+        }
     }
 
     @Override
