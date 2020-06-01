@@ -1,3 +1,6 @@
 .idea/
 target/
 *.iml
+*.jks
+*.pem
+*.p12
